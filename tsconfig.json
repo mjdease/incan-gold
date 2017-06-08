@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "tslint-language-service",
+        "alwaysShowRuleFailuresAsWarnings": true,
+        "disableNoUnusedVariableRule": false
+      }
+    ],
     "outDir": "build/dist",
     "module": "commonjs",
     "target": "es5",
@@ -15,7 +22,8 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    // "noUnusedLocals": true,
+    "noErrorTruncation": true
   },
   "exclude": [
     "node_modules",
