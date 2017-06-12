@@ -29,9 +29,7 @@ const store = createStore<StoreState>(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <div>
-        <Route path="/" component={App}/>
-      </div>
+      <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root') as HTMLElement

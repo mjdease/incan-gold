@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, withRouter, Switch, Route } from 'react-router';
 import { Container } from 'reactstrap';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MenuMain from './components/MenuMain/MenuMain';
+import NoMatch from './components/NoMatch/NoMatch';
 
 import './App.css';
 
@@ -20,7 +21,12 @@ class App extends React.Component<Props, void> {
         <Header />
         <div className="app-content">
           <Container>
-            <MenuMain />
+            <Switch>
+              <Route exact={true} path="/" component={MenuMain} />
+              <Route path="/play" component={MenuMain} />
+              <Route path="/track" component={MenuMain} />
+              <Route component={NoMatch} />
+            </Switch>
           </Container>
         </div>
         <Footer />
@@ -29,4 +35,4 @@ class App extends React.Component<Props, void> {
   }
 }
 
-export default App;
+export default withRouter<void>(App);
