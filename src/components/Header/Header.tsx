@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Navbar, NavbarBrand, Container } from 'reactstrap';
+import Icon from 'react-fa';
 
 class Header extends React.Component<RouteComponentProps<void>, {}> {
   goHome: React.MouseEventHandler<MouseEvent> = (event) => {
@@ -12,7 +13,9 @@ class Header extends React.Component<RouteComponentProps<void>, {}> {
     return (
       <Navbar inverse={true} color="inverse" className="header">
         <Container>
-          <NavbarBrand href="#" onClick={this.goHome}>Incan Gold Online</NavbarBrand>
+          <NavbarBrand href="#" onClick={this.goHome}>
+            <Icon name="diamond"/> Incan Gold Online
+          </NavbarBrand>
         </Container>
       </Navbar>
     );

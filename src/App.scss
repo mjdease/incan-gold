@@ -1,1 +1,5 @@
-
+.app-content {
+  background-color: lighten(#292b2c, 10%);
+  // full height - footer - header
+  min-height: calc(100vh - 72px - 54px);
+}
