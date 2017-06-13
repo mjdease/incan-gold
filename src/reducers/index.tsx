@@ -1,5 +1,11 @@
+import { combineReducers } from 'redux';
+
 import { StoreState } from '../types/index';
 
-export function dummyReducer(state: StoreState, action: object): StoreState {
-  return state;
-}
+import GameReducer from './gameReducer';
+
+const rootReducers = combineReducers<StoreState>({
+  game: GameReducer,
+});
+
+export default rootReducers;

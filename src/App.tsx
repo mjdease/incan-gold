@@ -5,6 +5,7 @@ import { Container } from 'reactstrap';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MenuMain from './components/MenuMain/MenuMain';
+import TrackerView from './containers/TrackerView';
 import NoMatch from './components/NoMatch/NoMatch';
 
 import './App.css';
@@ -24,7 +25,7 @@ class App extends React.Component<Props, void> {
             <Switch>
               <Route exact={true} path="/" component={MenuMain} />
               <Route path="/play" component={MenuMain} />
-              <Route path="/track" component={MenuMain} />
+              <Route path="/track" component={TrackerView} />
               <Route component={NoMatch} />
             </Switch>
           </Container>

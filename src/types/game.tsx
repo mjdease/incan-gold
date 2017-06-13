@@ -1,11 +1,11 @@
 export interface GameState {
-  currentRoundIndex: number;
-  discardedHazards: HazardCard[];
-  artifacts: {
+  currentRoundIndex?: number;
+  discardedHazards?: HazardCard[];
+  artifacts?: {
     active: ArtifactCard[];
     collected: ArtifactCard[];
   };
-  rounds: Round[];
+  rounds?: Round[];
 }
 
 export interface Round {
