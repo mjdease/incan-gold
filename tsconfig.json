@@ -20,7 +20,10 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
+    // Disabled strict null checks to allow defaultProps to be used without unreasonable amounts of typecasting
+    // TODO: reenable when this is addressed:
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11640
+    // "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     // "noUnusedLocals": true,
     "noErrorTruncation": true
