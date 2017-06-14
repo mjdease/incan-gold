@@ -1,9 +1,10 @@
 import * as React from 'react';
 // import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { Form, FormGroup, Label, Button } from 'reactstrap';
+import { Row, Form, FormGroup, Label, Button } from 'reactstrap';
 
 import NumberInput from '../NumberInput/NumberInput';
+import * as Cards from '../Cards';
 
 import './MenuNewTracker.css';
 
@@ -53,6 +54,11 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
             onChange={this.onRoundCountChange}
           />
         </FormGroup>
+        <Row>
+          <Cards.ArtifactCard className="col-sm-4" />
+          <Cards.GemCard value={17} className="col-sm-4" />
+          <Cards.HazardCard type="bug" className="col-sm-4" />
+        </Row>
         <Button type="submit" outline={true}>
           Start Tracking Game
         </Button>

@@ -3,7 +3,7 @@ import ReactResizeDetector from 'react-resize-detector';
 import * as classNames from 'classnames';
 
 import './Card.css';
-import IconSvg from '../IconSvg/IconSvg';
+import IconSvg from '../../IconSvg/IconSvg';
 
 interface CardProps {
   iconName: ig.iconName;
