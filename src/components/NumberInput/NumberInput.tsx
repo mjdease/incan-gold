@@ -9,6 +9,7 @@ interface NumberInputProps {
   min?: number;
   max?: number;
   step?: number;
+  width?: string;
   isValid?: boolean;
   onChange?(value: number): void;
 }
@@ -98,8 +99,14 @@ class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
   render() {
     let buttonColor: string = this.props.isValid ? 'secondary' : 'danger';
 
+    if (this.props.width) {
+      var widthStyle: React.CSSProperties = {
+        width: this.props.width,
+      };
+    }
+
     return (
-      <InputGroup className="number-input">
+      <InputGroup className="number-input" style={widthStyle}>
         <InputGroupButton>
           <Button
             className="number-input__button"

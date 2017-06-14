@@ -51,6 +51,7 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
             min={1}
             max={5}
             value={1}
+            width="160px"
             onChange={this.onRoundCountChange}
           />
         </FormGroup>
