@@ -2,18 +2,10 @@ import * as React from 'react';
 
 import * as svgs from './svgs';
 
-type iconName =
-  | 'bolt'
-  | 'bomb'
-  | 'bug'
-  | 'diamond'
-  | 'fire'
-  | 'rocket'
-  | 'trophy';
-type iconMapType = { [key in iconName]: React.SFC<svgs.SvgProps>};
+type iconMapType = { [key in ig.iconName]: React.SFC<svgs.SvgProps>};
 
 interface IconProps {
-  name: iconName;
+  name: ig.iconName;
   className?: string;
 }
 
