@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Input, InputGroup, InputGroupButton, Button } from 'reactstrap';
+import * as reactstrapTypes from '../../types/extensions/reactstrap';
+import { Input, InputGroupButton, Button } from 'reactstrap';
+const InputGroup = require('reactstrap').InputGroup as reactstrapTypes.InputGroup;
+
 import Icon from 'react-fa';
 
 import './NumberInput.css';
