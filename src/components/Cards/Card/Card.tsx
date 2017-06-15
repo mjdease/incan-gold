@@ -41,7 +41,7 @@ class Card extends React.Component<CardProps, CardState> {
 
   updateFontSize = (cardWidth: number) => {
     let gemFontSize: string = cardWidth * 0.2 + 'px';
-    let labelFontSize: string = cardWidth * 0.09 + 'px';
+    let labelFontSize: string = cardWidth * 0.08 + 'px';
 
     this.setState({
       gemFontSize,

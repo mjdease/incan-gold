@@ -8,13 +8,14 @@ import Icon from 'react-fa';
 import './NumberInput.css';
 
 interface NumberInputProps {
-  value?: number;
+  initialValue?: number;
   min?: number;
   max?: number;
   step?: number;
+  name?: string;
   width?: string;
   isValid?: boolean;
-  onChange?(value: number): void;
+  onChange?(value: number, name: string): void;
 }
 
 interface NumberInputState {
@@ -24,7 +25,7 @@ interface NumberInputState {
 
 class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
   static defaultProps: NumberInputProps = {
-    value: 1,
+    initialValue: 1,
     min: Number.MIN_SAFE_INTEGER,
     max: Number.MAX_SAFE_INTEGER,
     step: 1,
@@ -36,18 +37,27 @@ class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
   constructor(props: NumberInputProps) {
     super(props);
 
-    if (typeof this.props.value === 'number') {
-      this.state = {
-        value: this.props.value,
-      };
-    }
+    this.state = {
+      value: this.props.initialValue,
+    };
 
+  }
+
+  componentWillReceiveProps(nextProps: NumberInputProps) {
+    if (nextProps.min !== this.props.min || nextProps.max !== this.props.max) {
+      let newVal: number = this.bound(this.state.value, nextProps.min, nextProps.max);
+      if (newVal !== this.state.value) {
+        this.setState({
+          value: newVal,
+        });
+      }
+    }
   }
 
   componentDidUpdate(prevProps: NumberInputProps, prevState: NumberInputState) {
     if (this.state.value !== prevState.value) {
       if (typeof this.props.onChange === 'function') {
-        this.props.onChange(this.state.value);
+        this.props.onChange(this.state.value, this.props.name);
       }
     }
   }
@@ -65,20 +75,20 @@ class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
 
     newVal += change * this.props.step;
 
-    newVal = this.bound(newVal);
+    newVal = this.bound(newVal, this.props.min, this.props.max);
 
     this.setState({
       value: newVal,
     });
   }
 
-  bound = (value: number): number => {
+  bound = (value: number, min: number, max: number): number => {
     let newValue: number = value;
-    if (newValue > this.props.max) {
-      newValue = this.props.max;
+    if (newValue > max) {
+      newValue = max;
     }
-    if (newValue < this.props.min) {
-      newValue = this.props.min;
+    if (newValue < min) {
+      newValue = min;
     }
     return newValue;
   }
@@ -92,7 +102,7 @@ class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
       return;
     }
 
-    val = this.bound(val);
+    val = this.bound(val, this.props.min, this.props.max);
 
     this.setState({
       value: val,
@@ -116,7 +126,7 @@ class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
             outline={true}
             color={buttonColor}
             onClick={this.decrease}
-            disabled={this.state.value === this.props.min}
+            disabled={this.state.value <= this.props.min}
           >
             <Icon name="minus" />
           </Button>
@@ -132,7 +142,7 @@ class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
             outline={true}
             color={buttonColor}
             onClick={this.increase}
-            disabled={this.state.value === this.props.max}
+            disabled={this.state.value >= this.props.max}
           >
             <Icon name="plus" />
           </Button>

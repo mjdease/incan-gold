@@ -19,7 +19,7 @@ const hazardEquivalence: hazardEquivalenceMap = {
 };
 
 function getLabel(hazardType: ig.hazardTypes): string {
-  return `Equivalent: ${hazardEquivalence[hazardType]}`;
+  return ` IG Equivalent: ${hazardEquivalence[hazardType]}`;
 }
 
 const GemCard: React.SFC<GemCardProps> = (props) => {
