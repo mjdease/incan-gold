@@ -38,6 +38,12 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
     });
   }
 
+  // renderExtraSetup() {
+  //   return (
+
+  //   );
+  // }
+
   render() {
     return (
       <Form
@@ -56,9 +62,12 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
           />
         </FormGroup>
         <Row>
-          <Cards.ArtifactCard className="col-sm-4" />
-          <Cards.GemCard value={17} className="col-sm-4" />
-          <Cards.HazardCard type="bug" className="col-sm-4" />
+          <Cards.GemCard value={17} className="col-sm-2" />
+          <Cards.HazardCard type="bug" showEquivalent={false} className="col-sm-2" />
+          <Cards.HazardCard type="bolt" showEquivalent={'hover'} className="col-sm-2" />
+          <Cards.HazardCard type="fire" showEquivalent={'hover'} className="col-sm-2" />
+          <Cards.HazardCard type="user" showEquivalent={'always'} className="col-sm-2" />
+          <Cards.HazardCard type="bomb" showEquivalent={'always'} className="col-sm-2" />
         </Row>
         <Button type="submit" outline={true}>
           Start Tracking Game

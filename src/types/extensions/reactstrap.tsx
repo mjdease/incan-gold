@@ -2,7 +2,7 @@
 import * as ReactRouter from 'react-router-dom';
 /* tslint:enable: no-unused-variable */
 
-// Props from @types/reactstrap/lib/InputGroup
+// Props copied from @types/reactstrap/lib/InputGroup
 interface InputGroupProps {
   tag?: React.ReactType;
   size?: string;
@@ -12,7 +12,7 @@ interface InputGroupProps {
 // TODO: Remove when this issue is addressed:
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/17123
 
-// Props from @types/reactstrap/lib/Button
+// Props copied from @types/reactstrap/lib/Button
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   outline?: boolean;
   active?: boolean;
