@@ -194,62 +194,29 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
 
     const maxHazard: number = Math.min(this.state.currentRoundIndex, 2);
     const maxHazardsRemain: number = this.state.currentRoundIndex - this.getTotalHazardCount();
+    const hazardList: ig.hazardTypes[] = ['bug', 'bolt', 'fire', 'user', 'bomb'];
 
     return (
       <Row>
         <Col xs="12">
           <Label>Hazards Discarded:</Label>
         </Col>
-        <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
-          <HazardCard className="new-tracker__card" type="bug" showEquivalent={'hover'} />
-          <NumberInput
-            initialValue={0}
-            min={0}
-            max={this.getMaxHazardCount('bug', maxHazard, maxHazardsRemain)}
-            name="bug"
-            onChange={this.onHazardCountChange}
-          />
-        </Col>
-        <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
-          <HazardCard className="new-tracker__card" type="bolt" showEquivalent={'hover'} />
-          <NumberInput
-            initialValue={0}
-            min={0}
-            max={this.getMaxHazardCount('bolt', maxHazard, maxHazardsRemain)}
-            name="bolt"
-            onChange={this.onHazardCountChange}
-          />
-        </Col>
-        <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
-          <HazardCard className="new-tracker__card" type="fire" showEquivalent={'hover'} />
-          <NumberInput
-            initialValue={0}
-            min={0}
-            max={this.getMaxHazardCount('fire', maxHazard, maxHazardsRemain)}
-            name="fire"
-            onChange={this.onHazardCountChange}
-          />
-        </Col>
-        <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
-          <HazardCard className="new-tracker__card" type="user" showEquivalent={'hover'} />
-          <NumberInput
-            initialValue={0}
-            min={0}
-            max={this.getMaxHazardCount('user', maxHazard, maxHazardsRemain)}
-            name="user"
-            onChange={this.onHazardCountChange}
-          />
-        </Col>
-        <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
-          <HazardCard className="new-tracker__card" type="bomb" showEquivalent={'hover'} />
-          <NumberInput
-            initialValue={0}
-            min={0}
-            max={this.getMaxHazardCount('bomb', maxHazard, maxHazardsRemain)}
-            name="bomb"
-            onChange={this.onHazardCountChange}
-          />
-        </Col>
+        {
+          hazardList.map((hazardType: ig.hazardTypes) => {
+            return (
+              <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
+                <HazardCard className="new-tracker__card" type={hazardType} showEquivalent={'hover'} />
+                <NumberInput
+                  initialValue={0}
+                  min={0}
+                  max={this.getMaxHazardCount(hazardType, maxHazard, maxHazardsRemain)}
+                  name={hazardType}
+                  onChange={this.onHazardCountChange}
+                />
+              </Col>
+            );
+          })
+        }
       </Row>
     );
   }
