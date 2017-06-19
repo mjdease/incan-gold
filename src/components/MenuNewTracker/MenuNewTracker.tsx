@@ -1,15 +1,15 @@
 import * as React from 'react';
-// import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { Row, Col, Form, FormGroup, Label, Button, Alert } from 'reactstrap';
 
+import * as GameActions from '../../actions/gameActionCreators';
 import NumberInput from '../NumberInput/NumberInput';
 import { HazardCard } from '../Cards';
 
 import './MenuNewTracker.css';
 
 interface MenuNewTrackerProps extends RouteComponentProps<void> {
-  startGame(currentRoundIndex: number): void;
+  newGame: GameActions.newGameActionCreator;
 }
 
 interface MenuNewTrackerState {
@@ -42,9 +42,9 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
   handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    console.log ('starting new game', this.state);
-
     this.setState({submitErrorMessage: ''});
+
+    console.log ('starting new game', this.state);
 
     if (this.state.artifactsCollected > this.state.currentRoundIndex) {
       this.setState({
@@ -65,7 +65,12 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
       return;
     }
 
-    this.props.startGame(this.state.currentRoundIndex);
+    this.props.newGame(
+      this.state.currentRoundIndex,
+      this.state.artifactsCollected,
+      this.state.hazardsDiscarded
+    );
+    this.props.history.push('/track/game');
   }
 
   onRoundCountChange = (value: number): void => {
@@ -202,9 +207,9 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
           <Label>Hazards Discarded:</Label>
         </Col>
         {
-          hazardList.map((hazardType: ig.hazardTypes) => {
+          hazardList.map((hazardType: ig.hazardTypes, index: number) => {
             return (
-              <Col xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
+              <Col key={index} xs="6" sm="4" md="3" lg="2" className="new-tracker__card-column">
                 <HazardCard className="new-tracker__card" type={hazardType} showEquivalent={'hover'} />
                 <NumberInput
                   initialValue={0}
@@ -222,5 +227,4 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
   }
 }
 
-// export default connect()(MenuNewTracker);
 export default MenuNewTracker;

@@ -1,26 +1,22 @@
-import * as ACTIONS from '../constants/actionConstants';
+import * as Actions from '../constants/actionConstants';
 
-export interface NewGame {
-  type: ACTIONS.NEW_GAME;
-  currentRound: number;
-}
-
-export interface EndGame {
-  type: ACTIONS.END_GAME;
-}
-
-export type GameAction = NewGame | EndGame;
-
-export type newGame = (currentRound: number) => NewGame;
-export let newGame: newGame = function(currentRound: number): NewGame {
+export function newGameActionCreator(
+  currentRoundIndex: number,
+  artifactsCollected: number,
+  hazardsDiscarded: ig.hazardCount
+): Actions.NewGame {
   return {
-    type: ACTIONS.NEW_GAME,
-    currentRound,
-  };
-};
-
-export function endGame(): EndGame {
-  return {
-    type: ACTIONS.END_GAME,
+    type: Actions.type.NEW_GAME,
+    currentRoundIndex,
+    artifactsCollected,
+    hazardsDiscarded,
   };
 }
+export type newGameActionCreator = typeof newGameActionCreator;
+
+export function endGameActionCreator(): Actions.EndGame {
+  return {
+    type: Actions.type.END_GAME,
+  };
+}
+export type endGameActionCreator = typeof endGameActionCreator;

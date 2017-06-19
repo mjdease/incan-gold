@@ -11,11 +11,15 @@ import NoMatch from './components/NoMatch/NoMatch';
 import './App.css';
 
 
-interface Props extends RouteComponentProps<void> {
+interface AppProps {
 
 }
 
-class App extends React.Component<Props, void> {
+// interface Props extends RouteComponentProps<void> {
+
+// }
+
+class App extends React.Component<AppProps & RouteComponentProps<void>, void> {
   render() {
     return (
       <div>
@@ -36,4 +40,4 @@ class App extends React.Component<Props, void> {
   }
 }
 
-export default withRouter<void>(App);
+export default withRouter<AppProps>(App);

@@ -9,7 +9,7 @@ import TrackerGameView from './TrackerGameView';
 
 interface TrackerViewProps extends RouteComponentProps<void> {
   game: ig.GameState;
-  newGame(currentRoundIndex: number): GameActions.NewGame;
+  newGame: GameActions.newGameActionCreator;
 }
 
 interface TrackerViewState {
@@ -17,24 +17,25 @@ interface TrackerViewState {
 }
 
 class TrackerView extends React.Component<TrackerViewProps, TrackerViewState> {
-  startGame = (currentRoundIndex: number) => {
-    console.log('TrackerView, start game', currentRoundIndex);
-    this.props.newGame(currentRoundIndex);
-    this.props.history.push('/track/game');
-  }
+  // startGame: GameActions.newGameActionCreator = (currentRoundIndex, artifacts, hazards) => {
+  //   console.log('TrackerView, start game', currentRoundIndex);
+  //   this.props.newGame(currentRoundIndex);
+  //   this.props.history.push('/track/game');
+  // }
 
   render() {
     return (
       <Switch>
         <Route
           path="/track/game"
-          render={(props) => (
-            <TrackerGameView {...props} game={this.props.game} />
-          )}
+          component={TrackerGameView}
         />
+          {/*render={(props) => (
+            <TrackerGameView {...props} game={this.props.game} />
+          )}*/}
         <Route
           render={(props) => (
-            <MenuNewTracker {...props} startGame={this.startGame} />
+            <MenuNewTracker {...props} newGame={this.props.newGame}/>
           )}
         />
       </Switch>
@@ -54,4 +55,7 @@ function mapStateToProps({game}: ig.StoreState) {
 //   };
 // }
 
-export default connect( mapStateToProps, {newGame: GameActions.newGame})(TrackerView);
+export default connect(
+  mapStateToProps,
+  {newGame: GameActions.newGameActionCreator}
+)(TrackerView);
