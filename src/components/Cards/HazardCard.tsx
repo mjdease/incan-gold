@@ -13,7 +13,7 @@ type hazardEquivalenceMap = {[name in ig.hazardTypes]: string};
 const hazardEquivalence: hazardEquivalenceMap = {
   fire: 'Fire',
   bug: 'Spiders',
-  user: 'Mummy',
+  spy: 'Mummy',
   bolt: 'Snake',
   bomb: 'Rockfall',
 };

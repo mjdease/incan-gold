@@ -28,7 +28,7 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
       bomb: 0,
       bug: 0,
       fire: 0,
-      user: 0,
+      spy: 0,
     },
     submitErrorMessage: '',
   };
@@ -199,7 +199,7 @@ class MenuNewTracker extends React.Component<MenuNewTrackerProps, MenuNewTracker
 
     const maxHazard: number = Math.min(this.state.currentRoundIndex, 2);
     const maxHazardsRemain: number = this.state.currentRoundIndex - this.getTotalHazardCount();
-    const hazardList: ig.hazardTypes[] = ['bug', 'bolt', 'fire', 'user', 'bomb'];
+    const hazardList: ig.hazardTypes[] = ['bug', 'bolt', 'fire', 'spy', 'bomb'];
 
     return (
       <Row>

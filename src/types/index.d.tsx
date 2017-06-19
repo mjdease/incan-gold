@@ -16,7 +16,7 @@ declare namespace ig {
   type hazardTypes =
     | 'bug'
     | 'bomb'
-    | 'user'
+    | 'spy'
     | 'fire'
     | 'bolt';
 

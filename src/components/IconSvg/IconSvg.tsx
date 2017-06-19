@@ -15,7 +15,7 @@ const iconMap: iconMapType = {
   bug: svgs.bug,
   diamond: svgs.diamond,
   fire: svgs.fire,
-  user: svgs.user,
+  spy: svgs.spy,
   trophy: svgs.trophy,
 };
 
